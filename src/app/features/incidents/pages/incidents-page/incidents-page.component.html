@@ -1,0 +1,36 @@
+<section class="page">
+  <header class="page__header">
+    <div>
+      <p class="page__eyebrow">Incidents</p>
+      <h2 class="page__title">Tracked issues</h2>
+    </div>
+    <span class="page__meta">Mock list view</span>
+  </header>
+
+  <div class="table">
+    <div class="table__head">
+      <span>Incident</span>
+      <span>Owner</span>
+      <span>Severity</span>
+      <span>Status</span>
+    </div>
+
+    @for (incident of incidents; track incident.title) {
+      <article class="table__row">
+        <strong>{{ incident.title }}</strong>
+        <span>{{ incident.owner }}</span>
+        <span class="pill" [class.pill--severity]="incident.severity === 'High'">
+          {{ incident.severity }}
+        </span>
+        <span
+          class="pill"
+          [class.pill--open]="incident.status === 'Open'"
+          [class.pill--investigating]="incident.status === 'Investigating'"
+          [class.pill--stable]="incident.status === 'Stable'"
+        >
+          {{ incident.status }}
+        </span>
+      </article>
+    }
+  </div>
+</section>

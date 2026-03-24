@@ -1,0 +1,55 @@
+.page,
+.stack {
+  display: grid;
+  gap: 24px;
+}
+
+.page__eyebrow {
+  margin: 0 0 8px;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page__title,
+.panel h3,
+.panel p {
+  margin: 0;
+}
+
+.page__title {
+  font-size: 1.8rem;
+}
+
+.panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px;
+  border: 1px solid var(--panel-border);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.panel p {
+  margin-top: 8px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.panel__value {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .panel {
+    flex-direction: column;
+    align-items: start;
+  }
+}
