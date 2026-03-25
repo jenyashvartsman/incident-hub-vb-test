@@ -1,0 +1,85 @@
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --font-sans: 'Segoe UI Variable', 'Trebuchet MS', sans-serif;
+  --app-bg: #0d1016;
+  --app-bg-start: #161c28;
+  --app-bg-end: #0a0d13;
+  --app-glow: rgba(96, 165, 250, 0.16);
+  --panel-bg: rgba(19, 24, 34, 0.82);
+  --panel-bg-strong: rgba(16, 20, 30, 0.92);
+  --panel-border: rgba(122, 139, 173, 0.2);
+  --panel-border-strong: rgba(138, 158, 196, 0.34);
+  --surface-soft: rgba(255, 255, 255, 0.04);
+  --surface-soft-strong: rgba(255, 255, 255, 0.07);
+  --surface-hover: rgba(255, 255, 255, 0.05);
+  --surface-head: rgba(255, 255, 255, 0.045);
+  --text-primary: #edf2ff;
+  --text-secondary: #b3bfd4;
+  --text-muted: #8190a8;
+  --accent: #71b7ff;
+  --accent-strong: #4994ea;
+  --accent-soft: rgba(113, 183, 255, 0.16);
+  --focus-ring: rgba(113, 183, 255, 0.22);
+  --status-open: #f2be63;
+  --status-investigating: #70c1ff;
+  --status-stable: #66cf96;
+  --severity-high: #ff8d80;
+  --severity-medium: #e6c56d;
+  --badge-neutral-bg: rgba(179, 191, 212, 0.1);
+  --badge-info-bg: rgba(112, 193, 255, 0.14);
+  --badge-success-bg: rgba(102, 207, 150, 0.14);
+  --badge-warning-bg: rgba(242, 190, 99, 0.14);
+  --badge-danger-bg: rgba(255, 141, 128, 0.14);
+  --button-primary-start: #7dc0ff;
+  --button-primary-end: #4f97e9;
+  --button-primary-foreground: #08111d;
+  --shadow-lg:
+    inset 0 1px 0 rgba(255, 255, 255, 0.04),
+    0 18px 42px rgba(0, 0, 0, 0.24);
+  --shadow-md:
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --app-bg: #edf3fb;
+  --app-bg-start: #f7fbff;
+  --app-bg-end: #dfe8f4;
+  --app-glow: rgba(64, 124, 201, 0.18);
+  --panel-bg: rgba(255, 255, 255, 0.86);
+  --panel-bg-strong: rgba(255, 255, 255, 0.96);
+  --panel-border: rgba(103, 123, 156, 0.18);
+  --panel-border-strong: rgba(103, 123, 156, 0.28);
+  --surface-soft: rgba(17, 24, 39, 0.035);
+  --surface-soft-strong: rgba(17, 24, 39, 0.06);
+  --surface-hover: rgba(17, 24, 39, 0.05);
+  --surface-head: rgba(17, 24, 39, 0.05);
+  --text-primary: #172033;
+  --text-secondary: #4d5d78;
+  --text-muted: #6c7c95;
+  --accent: #2468c7;
+  --accent-strong: #184f9f;
+  --accent-soft: rgba(36, 104, 199, 0.12);
+  --focus-ring: rgba(36, 104, 199, 0.18);
+  --status-open: #a56b00;
+  --status-investigating: #0f6bb2;
+  --status-stable: #13795b;
+  --severity-high: #c74c40;
+  --severity-medium: #9e7700;
+  --badge-neutral-bg: rgba(108, 124, 149, 0.12);
+  --badge-info-bg: rgba(15, 107, 178, 0.1);
+  --badge-success-bg: rgba(19, 121, 91, 0.1);
+  --badge-warning-bg: rgba(165, 107, 0, 0.1);
+  --badge-danger-bg: rgba(199, 76, 64, 0.1);
+  --button-primary-start: #3a83e2;
+  --button-primary-end: #2468c7;
+  --button-primary-foreground: #f7fbff;
+  --shadow-lg:
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    0 18px 42px rgba(41, 68, 111, 0.14);
+  --shadow-md:
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    0 12px 30px rgba(41, 68, 111, 0.1);
+}

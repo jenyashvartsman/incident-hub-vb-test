@@ -1,9 +1,24 @@
 <div class="shell">
   <aside class="shell__sidebar">
-    <div>
-      <p class="shell__eyebrow">Incident Hub</p>
-      <h1 class="shell__title">Operations Console</h1>
-      <p class="shell__subtitle">Frontend scaffold for routing, shell layout, and feature pages.</p>
+    <div class="shell__top">
+      <div>
+        <p class="shell__eyebrow">Incident Hub</p>
+        <h1 class="shell__title">Operations Console</h1>
+        <p class="shell__subtitle">Frontend scaffold for routing, shell layout, and feature pages.</p>
+      </div>
+
+      <div class="shell__theme-switcher" aria-label="Theme switcher" role="group">
+        @for (theme of themeOptions; track theme.value) {
+          <button
+            class="shell__theme-option"
+            [class.shell__theme-option--active]="activeTheme() === theme.value"
+            type="button"
+            (click)="setTheme(theme.value)"
+          >
+            {{ theme.label }}
+          </button>
+        }
+      </div>
     </div>
 
     <nav class="shell__nav" aria-label="Primary navigation">

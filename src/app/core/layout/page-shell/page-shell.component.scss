@@ -16,7 +16,8 @@
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
   border-radius: 20px;
-  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(14px);
 }
 
 .shell__sidebar {
@@ -24,6 +25,11 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 24px;
+}
+
+.shell__top {
+  display: grid;
+  gap: 24px;
 }
 
 .shell__eyebrow {
@@ -47,6 +53,44 @@
   line-height: 1.5;
 }
 
+.shell__theme-switcher {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid var(--panel-border);
+  border-radius: 16px;
+  background: var(--surface-soft);
+}
+
+.shell__theme-option {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.shell__theme-option:hover {
+  border-color: var(--panel-border);
+  background: var(--surface-hover);
+  color: var(--text-primary);
+}
+
+.shell__theme-option--active {
+  border-color: var(--panel-border-strong);
+  background: var(--panel-bg-strong);
+  color: var(--text-primary);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 .shell__nav {
   display: grid;
   gap: 10px;
@@ -54,10 +98,11 @@
 
 .shell__nav-link {
   padding: 12px 14px;
-  border: 1px solid transparent;
+  border: 1px solid var(--panel-border);
   border-radius: 14px;
   color: var(--text-secondary);
   text-decoration: none;
+  background: var(--surface-soft);
   transition:
     border-color 160ms ease,
     background-color 160ms ease,
@@ -88,13 +133,7 @@
   .shell__sidebar {
     gap: 20px;
   }
-
-  .shell__nav {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 900px) {
+  
   .shell {
     min-height: unset;
   }
