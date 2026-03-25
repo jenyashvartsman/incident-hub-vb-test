@@ -1,0 +1,27 @@
+<label class="ui-select-field" [for]="inputId">
+  @if (label) {
+    <span class="ui-select-field__label">{{ label }}</span>
+  }
+
+  <div class="ui-select-field__shell">
+    <select
+      class="ui-select-field__control"
+      [attr.id]="inputId"
+      [attr.name]="name || null"
+      [disabled]="disabled"
+      [required]="required"
+      [value]="value"
+      (blur)="handleBlur()"
+      (change)="handleChange($event)"
+    >
+      @for (option of options; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+    <span class="ui-select-field__icon" aria-hidden="true">⌄</span>
+  </div>
+
+  @if (hint) {
+    <span class="ui-select-field__hint">{{ hint }}</span>
+  }
+</label>

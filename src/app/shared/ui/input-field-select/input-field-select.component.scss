@@ -1,0 +1,70 @@
+:host {
+  display: block;
+}
+
+.ui-select-field {
+  display: grid;
+  gap: 8px;
+}
+
+.ui-select-field__label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ui-select-field__shell {
+  position: relative;
+}
+
+.ui-select-field__control {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 44px 0 14px;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-primary);
+  font: inherit;
+  appearance: none;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ui-select-field__control:hover:enabled {
+  border-color: var(--panel-border-strong);
+}
+
+.ui-select-field__control:focus-visible {
+  outline: none;
+  border-color: rgba(98, 176, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(98, 176, 255, 0.18);
+}
+
+:host.ng-invalid.ng-dirty.ng-touched .ui-select-field__control {
+  border-color: var(--severity-high);
+}
+
+.ui-select-field__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ui-select-field__icon {
+  position: absolute;
+  top: 50%;
+  right: 14px;
+  transform: translateY(-75%);
+  color: var(--text-muted);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.ui-select-field__hint {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}

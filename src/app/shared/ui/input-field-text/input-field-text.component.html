@@ -1,0 +1,41 @@
+<label class="ui-input-field" [for]="inputId">
+  @if (label) {
+    <span class="ui-input-field__label">{{ label }}</span>
+  }
+
+  @if (multiline) {
+    <textarea
+      class="ui-input-field__control ui-input-field__control--textarea"
+      [attr.autocomplete]="autocomplete"
+      [attr.id]="inputId"
+      [attr.name]="name || null"
+      [disabled]="disabled"
+      [placeholder]="placeholder"
+      [readOnly]="readonly"
+      [required]="required"
+      [rows]="rows"
+      [value]="value"
+      (blur)="handleBlur()"
+      (input)="handleInput($event)"
+    ></textarea>
+  } @else {
+    <input
+      class="ui-input-field__control"
+      [attr.autocomplete]="autocomplete"
+      [attr.id]="inputId"
+      [attr.name]="name || null"
+      [disabled]="disabled"
+      [placeholder]="placeholder"
+      [readOnly]="readonly"
+      [required]="required"
+      [type]="type"
+      [value]="value"
+      (blur)="handleBlur()"
+      (input)="handleInput($event)"
+    />
+  }
+
+  @if (hint) {
+    <span class="ui-input-field__hint">{{ hint }}</span>
+  }
+</label>

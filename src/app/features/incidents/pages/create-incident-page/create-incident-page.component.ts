@@ -1,77 +1,80 @@
 import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 
 import { UiButtonComponent } from '../../../../shared/ui/button/button.component';
 import { UiCardComponent } from '../../../../shared/ui/card/card.component';
-import { UiInputComponent } from '../../../../shared/ui/input/input.component';
+import {
+  UiInputFieldSelectComponent,
+  UiSelectOption
+} from '../../../../shared/ui/input-field-select/input-field-select.component';
+import { UiInputFieldTextComponent } from '../../../../shared/ui/input-field-text/input-field-text.component';
 import { CreateIncidentInput, IncidentSeverity } from '../../models/incident.model';
 import { IncidentsService } from '../../services/incidents.service';
-
-type CreateIncidentFormModel = CreateIncidentInput;
 
 @Component({
   selector: 'app-create-incident-page',
   standalone: true,
-  imports: [FormsModule, RouterLink, UiButtonComponent, UiCardComponent, UiInputComponent],
+  imports: [
+    ReactiveFormsModule,
+    RouterLink,
+    UiButtonComponent,
+    UiCardComponent,
+    UiInputFieldSelectComponent,
+    UiInputFieldTextComponent
+  ],
   templateUrl: './create-incident-page.component.html',
   styleUrl: './create-incident-page.component.scss'
 })
 export class CreateIncidentPageComponent {
+  private readonly formBuilder = inject(FormBuilder);
   private readonly router = inject(Router);
   private readonly incidentsService = inject(IncidentsService);
 
-  protected readonly severityOptions: readonly IncidentSeverity[] = [
-    'Critical',
-    'High',
-    'Medium',
-    'Low'
+  protected readonly severityOptions: readonly UiSelectOption[] = [
+    { label: 'Critical', value: 'Critical' },
+    { label: 'High', value: 'High' },
+    { label: 'Medium', value: 'Medium' },
+    { label: 'Low', value: 'Low' }
   ];
 
-  protected readonly model: CreateIncidentFormModel = {
-    title: '',
-    summary: '',
-    description: '',
-    service: '',
-    owner: '',
-    channel: 'Slack #incident-room',
-    severity: 'High'
-  };
-
-  protected showValidation = false;
+  protected readonly form = this.formBuilder.nonNullable.group({
+    title: ['', Validators.required],
+    summary: ['', Validators.required],
+    description: ['', Validators.required],
+    service: ['', Validators.required],
+    owner: ['', Validators.required],
+    channel: ['Slack #incident-room', Validators.required],
+    severity: ['High' as IncidentSeverity, Validators.required]
+  });
 
   public constructor() {
     this.incidentsService.load();
   }
 
   protected submit(): void {
-    this.showValidation = true;
+    this.form.markAllAsTouched();
+    this.markAllAsDirty();
 
-    if (!this.isValid()) {
+    if (this.form.invalid) {
       return;
     }
 
+    const value = this.form.getRawValue();
     const incident = this.incidentsService.createIncident({
-      title: this.model.title.trim(),
-      summary: this.model.summary.trim(),
-      description: this.model.description.trim(),
-      service: this.model.service.trim(),
-      owner: this.model.owner.trim(),
-      channel: this.model.channel.trim(),
-      severity: this.model.severity
+      title: value.title.trim(),
+      summary: value.summary.trim(),
+      description: value.description.trim(),
+      service: value.service.trim(),
+      owner: value.owner.trim(),
+      channel: value.channel.trim(),
+      severity: value.severity
     });
 
     void this.router.navigate(['/incidents', incident.id]);
   }
 
-  private isValid(): boolean {
-    return Boolean(
-      this.model.title.trim() &&
-        this.model.summary.trim() &&
-        this.model.description.trim() &&
-        this.model.service.trim() &&
-        this.model.owner.trim() &&
-        this.model.channel.trim()
-    );
+  private markAllAsDirty(): void {
+    Object.values(this.form.controls).forEach((control) => control.markAsDirty());
   }
 }

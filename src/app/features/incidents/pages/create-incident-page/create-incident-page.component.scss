@@ -16,9 +16,7 @@
 }
 
 .page__eyebrow,
-.page__summary,
-.field__label,
-.form__validation {
+.page__summary {
   color: var(--text-muted);
 }
 
@@ -60,43 +58,6 @@
 .form__grid {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-}
-
-.field {
-  display: grid;
-  gap: 8px;
-}
-
-.field__label {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.field__control {
-  width: 100%;
-  min-height: 44px;
-  padding: 0 14px;
-  border: 1px solid var(--panel-border);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.035);
-  color: var(--text-primary);
-  font: inherit;
-}
-
-.field__control--textarea {
-  min-height: 110px;
-  padding: 12px 14px;
-  resize: vertical;
-}
-
-.field__control:focus-visible {
-  outline: none;
-  border-color: rgba(98, 176, 255, 0.55);
-  box-shadow: 0 0 0 3px rgba(98, 176, 255, 0.18);
-}
-
-.form__validation {
-  color: var(--severity-high);
 }
 
 .form__actions {

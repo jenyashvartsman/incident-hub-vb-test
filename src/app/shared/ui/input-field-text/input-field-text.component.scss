@@ -1,0 +1,65 @@
+:host {
+  display: block;
+}
+
+.ui-input-field {
+  display: grid;
+  gap: 8px;
+}
+
+.ui-input-field__label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ui-input-field__control {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-primary);
+  font: inherit;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ui-input-field__control--textarea {
+  min-height: 110px;
+  padding: 12px 14px;
+  resize: vertical;
+}
+
+.ui-input-field__control::placeholder {
+  color: var(--text-muted);
+}
+
+.ui-input-field__control:hover:enabled {
+  border-color: var(--panel-border-strong);
+}
+
+.ui-input-field__control:focus-visible {
+  outline: none;
+  border-color: rgba(98, 176, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(98, 176, 255, 0.18);
+}
+
+:host.ng-invalid.ng-dirty.ng-touched .ui-input-field__control {
+  border-color: var(--severity-high);
+}
+
+.ui-input-field__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ui-input-field__hint {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}

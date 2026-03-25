@@ -10,51 +10,23 @@
   </header>
 
   <app-card padding="lg">
-    <form class="form" (ngSubmit)="submit()">
+    <form class="form" [formGroup]="form" (ngSubmit)="submit()">
       <div class="form__grid">
-        <app-input [(ngModel)]="model.title" label="Title" name="title" placeholder="API latency spike" />
-        <app-input [(ngModel)]="model.owner" label="Owner" name="owner" placeholder="Platform" />
-        <app-input [(ngModel)]="model.service" label="Service" name="service" placeholder="Public API" />
-        <app-input
-          [(ngModel)]="model.channel"
+        <app-input-field-text formControlName="title" label="Title" placeholder="API latency spike" />
+        <app-input-field-text formControlName="owner" label="Owner" placeholder="Platform" />
+        <app-input-field-text formControlName="service" label="Service" placeholder="Public API" />
+        <app-input-field-text
+          formControlName="channel"
           label="Response channel"
-          name="channel"
           placeholder="Slack #incident-room"
         />
       </div>
 
-      <label class="field">
-        <span class="field__label">Severity</span>
-        <select class="field__control" [(ngModel)]="model.severity" name="severity">
-          @for (severity of severityOptions; track severity) {
-            <option [value]="severity">{{ severity }}</option>
-          }
-        </select>
-      </label>
+      <app-input-field-select formControlName="severity" label="Severity" [options]="severityOptions" />
 
-      <label class="field">
-        <span class="field__label">Summary</span>
-        <textarea
-          class="field__control field__control--textarea"
-          [(ngModel)]="model.summary"
-          name="summary"
-          rows="3"
-        ></textarea>
-      </label>
+      <app-input-field-text formControlName="summary" label="Summary" [multiline]="true" [rows]="3" />
 
-      <label class="field">
-        <span class="field__label">Description</span>
-        <textarea
-          class="field__control field__control--textarea"
-          [(ngModel)]="model.description"
-          name="description"
-          rows="6"
-        ></textarea>
-      </label>
-
-      @if (showValidation) {
-        <p class="form__validation">Fill in all fields before creating the incident.</p>
-      }
+      <app-input-field-text formControlName="description" label="Description" [multiline]="true" [rows]="6" />
 
       <div class="form__actions">
         <a class="page__link" routerLink="/incidents">Cancel</a>
