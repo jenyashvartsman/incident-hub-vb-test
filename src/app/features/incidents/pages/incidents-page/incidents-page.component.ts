@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 
 import { UiBadgeComponent } from '../../../../shared/ui/badge/badge.component';
+import {
+  UiTableCellDirective,
+  UiTableComponent,
+  UiTableHeadDirective,
+  UiTableRowDirective
+} from '../../../../shared/ui/table/table.component';
 
 type IncidentListItem = {
   readonly title: string;
@@ -12,7 +18,13 @@ type IncidentListItem = {
 @Component({
   selector: 'app-incidents-page',
   standalone: true,
-  imports: [UiBadgeComponent],
+  imports: [
+    UiBadgeComponent,
+    UiTableCellDirective,
+    UiTableComponent,
+    UiTableHeadDirective,
+    UiTableRowDirective
+  ],
   templateUrl: './incidents-page.component.html',
   styleUrl: './incidents-page.component.scss'
 })

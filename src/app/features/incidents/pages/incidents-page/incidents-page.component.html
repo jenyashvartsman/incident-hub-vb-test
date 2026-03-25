@@ -7,22 +7,24 @@
     <span class="page__meta">Mock list view</span>
   </header>
 
-  <div class="table">
-    <div class="table__head">
-      <span>Incident</span>
-      <span>Owner</span>
-      <span>Severity</span>
-      <span>Status</span>
+  <app-table columns="minmax(0, 2fr) repeat(3, minmax(0, 1fr))">
+    <div uiTableHead>
+      <span uiTableCell>Incident</span>
+      <span uiTableCell>Owner</span>
+      <span uiTableCell>Severity</span>
+      <span uiTableCell>Status</span>
     </div>
 
     @for (incident of incidents; track incident.title) {
-      <article class="table__row">
-        <strong>{{ incident.title }}</strong>
-        <span>{{ incident.owner }}</span>
-        <app-badge [tone]="incident.severity === 'High' ? 'danger' : 'warning'">
+      <article uiTableRow>
+        <strong uiTableCell label="Incident">{{ incident.title }}</strong>
+        <span uiTableCell label="Owner">{{ incident.owner }}</span>
+        <app-badge uiTableCell label="Severity" [tone]="incident.severity === 'High' ? 'danger' : 'warning'">
           {{ incident.severity }}
         </app-badge>
         <app-badge
+          uiTableCell
+          label="Status"
           [tone]="
             incident.status === 'Open'
               ? 'warning'
@@ -35,5 +37,5 @@
         </app-badge>
       </article>
     }
-  </div>
+  </app-table>
 </section>
