@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { PageShellComponent } from './core/layout/page-shell/page-shell.component';
 import { DashboardPageComponent } from './features/dashboard/pages/dashboard-page/dashboard-page.component';
+import { DashboardStore } from './features/dashboard/state/dashboard.store';
 import { INCIDENTS_ROUTES } from './features/incidents/incidents.routes';
 import { SettingsPageComponent } from './features/settings/pages/settings-page/settings-page.component';
 
@@ -16,6 +17,7 @@ export const routes: Routes = [
       },
       {
         path: 'dashboard',
+        providers: [DashboardStore],
         component: DashboardPageComponent
       },
       ...INCIDENTS_ROUTES,

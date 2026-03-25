@@ -4,7 +4,8 @@
 }
 
 .page__header,
-.metrics {
+.metrics,
+.section {
   display: grid;
   gap: 16px;
 }
@@ -16,7 +17,9 @@
 
 .page__eyebrow,
 .metric-card__label,
-.metric-card__hint {
+.metric-card__hint,
+.page__summary,
+.recent-row__timestamp {
   color: var(--text-muted);
 }
 
@@ -34,8 +37,19 @@
   font-size: 1.8rem;
 }
 
+.page__summary,
+.section__title,
+.recent-row__timestamp {
+  margin: 0;
+}
+
+.page__summary {
+  margin-top: 10px;
+  line-height: 1.55;
+}
+
 .metrics {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .metric-card {
@@ -43,9 +57,46 @@
   gap: 14px;
 }
 
+.metric-card__top {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .metric-card__value {
   font-size: 2.2rem;
   line-height: 1;
+}
+
+.section__header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.section__title {
+  font-size: 1.2rem;
+}
+
+.recent-row {
+  cursor: pointer;
+  transition: background-color 150ms ease;
+}
+
+.recent-row:hover {
+  background: var(--surface-hover);
+}
+
+.recent-row__title {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.recent-row__timestamp {
+  display: inline-block;
+  font-size: 0.82rem;
 }
 
 @media (max-width: 640px) {

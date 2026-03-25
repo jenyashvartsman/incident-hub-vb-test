@@ -3,24 +3,61 @@
     <div>
       <p class="page__eyebrow">Dashboard</p>
       <h2 class="page__title">Operations at a glance</h2>
+      <p class="page__summary">Track incident volume, recent activity, and the latest created issues across the workspace.</p>
     </div>
-    <app-badge tone="success">Stable</app-badge>
+    <app-badge [tone]="isLoading() ? 'info' : 'success'">
+      {{ isLoading() ? 'Loading' : 'Stable' }}
+    </app-badge>
   </header>
 
   <div class="metrics">
-    <app-card>
-      <div class="metric-card">
-        <span class="metric-card__label">Open incidents</span>
-        <strong class="metric-card__value">12</strong>
-        <app-badge tone="danger">High priority</app-badge>
-      </div>
-    </app-card>
-    <app-card>
-      <div class="metric-card">
-        <span class="metric-card__label">Mean response</span>
-        <strong class="metric-card__value">18 min</strong>
-        <span class="metric-card__hint">Mock frontend metric</span>
-      </div>
-    </app-card>
+    @for (metric of summaryMetrics(); track metric.label) {
+      <app-card>
+        <div class="metric-card">
+          <div class="metric-card__top">
+            <span class="metric-card__label">{{ metric.label }}</span>
+            <app-badge [tone]="metric.tone">{{ metric.value }}</app-badge>
+          </div>
+          <strong class="metric-card__value">{{ metric.value }}</strong>
+          <span class="metric-card__hint">{{ metric.hint }}</span>
+        </div>
+      </app-card>
+    }
   </div>
+
+  <section class="section">
+    <div class="section__header">
+      <div>
+        <p class="page__eyebrow">Recent incidents</p>
+        <h3 class="section__title">Last 5 created incidents</h3>
+      </div>
+    </div>
+
+    <app-table columns="minmax(0, 2.2fr) repeat(4, minmax(0, 1fr))">
+      <div uiTableHead>
+        <span uiTableCell>Incident</span>
+        <span uiTableCell>Service</span>
+        <span uiTableCell>Owner</span>
+        <span uiTableCell>Severity</span>
+        <span uiTableCell>Status</span>
+      </div>
+
+      @for (incident of recentIncidents(); track incident.id) {
+        <article class="recent-row" uiTableRow (click)="openIncident(incident.id)">
+          <div uiTableCell label="Incident">
+            <strong class="recent-row__title">{{ incident.title }}</strong>
+            <span class="recent-row__timestamp">Created {{ incident.createdAt | date: 'mediumDate' }}</span>
+          </div>
+          <span uiTableCell label="Service">{{ incident.service }}</span>
+          <span uiTableCell label="Owner">{{ incident.owner }}</span>
+          <app-badge uiTableCell label="Severity" [tone]="severityTone(incident.severity)">
+            {{ incident.severity }}
+          </app-badge>
+          <app-badge uiTableCell label="Status" [tone]="statusTone(incident.status)">
+            {{ incident.status }}
+          </app-badge>
+        </article>
+      }
+    </app-table>
+  </section>
 </section>

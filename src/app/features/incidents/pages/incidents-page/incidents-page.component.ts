@@ -10,7 +10,7 @@ import {
   UiTableHeadDirective,
   UiTableRowDirective
 } from '../../../../shared/ui/table/table.component';
-import { IncidentSeverity, IncidentStatus } from '../../models/incident.model';
+import { IncidentSeverity, IncidentStatus } from '../../../../shared/models/incident.model';
 import { IncidentsStore } from '../../state/incidents.store';
 
 @Component({

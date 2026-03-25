@@ -3,7 +3,9 @@ import { Injectable, inject } from '@angular/core';
 
 import { Incident } from '../models/incident.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class IncidentsApiService {
   private readonly httpClient = inject(HttpClient);
 

@@ -1,13 +1,13 @@
 import { computed, inject, Signal } from '@angular/core';
 import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 
+import { IncidentsApiService } from '../../../shared/data-access/incidents-api.service';
 import {
   CreateIncidentInput,
   Incident,
   IncidentSeverity,
   IncidentStatus
-} from '../models/incident.model';
-import { IncidentsApiService } from '../data-access/incidents-api.service';
+} from '../../../shared/models/incident.model';
 
 type IncidentsState = {
   incidents: readonly Incident[];

@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 import { UiBadgeComponent } from '../../../../shared/ui/badge/badge.component';
 import { UiButtonComponent } from '../../../../shared/ui/button/button.component';
 import { UiCardComponent } from '../../../../shared/ui/card/card.component';
-import { IncidentSeverity, IncidentStatus } from '../../models/incident.model';
+import { IncidentSeverity, IncidentStatus } from '../../../../shared/models/incident.model';
 import { IncidentsStore } from '../../state/incidents.store';
 
 @Component({

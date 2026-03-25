@@ -9,7 +9,7 @@ import {
   UiSelectOption
 } from '../../../../shared/ui/input-field-select/input-field-select.component';
 import { UiInputFieldTextComponent } from '../../../../shared/ui/input-field-text/input-field-text.component';
-import { IncidentSeverity } from '../../models/incident.model';
+import { IncidentSeverity } from '../../../../shared/models/incident.model';
 import { IncidentsStore } from '../../state/incidents.store';
 
 @Component({
