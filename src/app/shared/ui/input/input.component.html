@@ -1,0 +1,23 @@
+<label class="ui-input" [for]="inputId">
+  @if (label) {
+    <span class="ui-input__label">{{ label }}</span>
+  }
+
+  <input
+    class="ui-input__control"
+    [attr.autocomplete]="autocomplete"
+    [attr.id]="inputId"
+    [disabled]="disabled"
+    [placeholder]="placeholder"
+    [readOnly]="readonly"
+    [required]="required"
+    [type]="type"
+    [value]="value"
+    (blur)="handleBlur()"
+    (input)="handleInput($event)"
+  />
+
+  @if (hint) {
+    <span class="ui-input__hint">{{ hint }}</span>
+  }
+</label>

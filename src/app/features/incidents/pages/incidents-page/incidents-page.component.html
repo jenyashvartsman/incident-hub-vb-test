@@ -19,17 +19,20 @@
       <article class="table__row">
         <strong>{{ incident.title }}</strong>
         <span>{{ incident.owner }}</span>
-        <span class="pill" [class.pill--severity]="incident.severity === 'High'">
+        <app-badge [tone]="incident.severity === 'High' ? 'danger' : 'warning'">
           {{ incident.severity }}
-        </span>
-        <span
-          class="pill"
-          [class.pill--open]="incident.status === 'Open'"
-          [class.pill--investigating]="incident.status === 'Investigating'"
-          [class.pill--stable]="incident.status === 'Stable'"
+        </app-badge>
+        <app-badge
+          [tone]="
+            incident.status === 'Open'
+              ? 'warning'
+              : incident.status === 'Investigating'
+                ? 'info'
+                : 'success'
+          "
         >
           {{ incident.status }}
-        </span>
+        </app-badge>
       </article>
     }
   </div>

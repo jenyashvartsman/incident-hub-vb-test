@@ -7,20 +7,28 @@
   </header>
 
   <div class="stack">
-    <article class="panel">
-      <div>
-        <h3>Notification routing</h3>
-        <p>Choose how responders are notified when new incidents are created.</p>
+    <app-card>
+      <div class="panel">
+        <div>
+          <h3 class="panel__title">Notification routing</h3>
+          <p class="panel__desc">
+            Choose how responders are notified when new incidents are created.
+          </p>
+        </div>
+        <app-badge class="panel__value" color="blue">Email</app-badge>
       </div>
-      <span class="panel__value">Email + Slack</span>
-    </article>
+    </app-card>
 
-    <article class="panel">
-      <div>
-        <h3>Severity thresholds</h3>
-        <p>Placeholder area for future production-style form controls and preferences.</p>
+    <app-card>
+      <div class="panel">
+        <div>
+          <h3 class="panel__title">Severity thresholds</h3>
+          <p class="panel__desc">
+            Placeholder area for future production-style form controls and preferences.
+          </p>
+        </div>
+        <app-badge class="panel__value" color="blue">4 levels</app-badge>
       </div>
-      <span class="panel__value">4 levels</span>
-    </article>
+    </app-card>
   </div>
 </section>

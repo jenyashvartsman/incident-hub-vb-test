@@ -94,7 +94,11 @@
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
+  .shell {
+    min-height: unset;
+  }
+
   .shell__nav {
     grid-template-columns: 1fr;
   }

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { UiBadgeComponent } from '../../../../shared/ui/badge/badge.component';
+
 type IncidentListItem = {
   readonly title: string;
   readonly owner: string;
@@ -10,6 +12,7 @@ type IncidentListItem = {
 @Component({
   selector: 'app-incidents-page',
   standalone: true,
+  imports: [UiBadgeComponent],
   templateUrl: './incidents-page.component.html',
   styleUrl: './incidents-page.component.scss'
 })

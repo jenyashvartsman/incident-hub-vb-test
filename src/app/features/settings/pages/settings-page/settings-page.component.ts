@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
+import { UiCardComponent } from '../../../../shared/ui/card/card.component';
+import { UiBadgeComponent } from '../../../../shared/ui/badge/badge.component';
 
 @Component({
   selector: 'app-settings-page',
-  standalone: true,
+  imports: [UiBadgeComponent, UiCardComponent],
   templateUrl: './settings-page.component.html',
-  styleUrl: './settings-page.component.scss'
+  styleUrl: './settings-page.component.scss',
 })
-export class SettingsPageComponent {}
+export class SettingsPageComponent {
+  protected routingChannel = 'Email + Slack';
+  protected escalationAlias = 'primary-oncall';
+}

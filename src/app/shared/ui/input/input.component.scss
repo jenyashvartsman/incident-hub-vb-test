@@ -1,0 +1,55 @@
+:host {
+  display: block;
+}
+
+.ui-input {
+  display: grid;
+  gap: 8px;
+}
+
+.ui-input__label {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.ui-input__control {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border: 1px solid var(--panel-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.035);
+  color: var(--text-primary);
+  font: inherit;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ui-input__control::placeholder {
+  color: var(--text-muted);
+}
+
+.ui-input__control:hover:enabled {
+  border-color: var(--panel-border-strong);
+}
+
+.ui-input__control:focus-visible {
+  outline: none;
+  border-color: rgba(98, 176, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(98, 176, 255, 0.18);
+}
+
+.ui-input__control:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ui-input__hint {
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
