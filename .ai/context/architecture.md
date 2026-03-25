@@ -11,3 +11,8 @@ Structure rules:
 - use typed models
 - prefer small focused components
 - keep diffs small
+
+API access:
+
+- use data-access layer per feature
+- no direct HttpClient usage in components

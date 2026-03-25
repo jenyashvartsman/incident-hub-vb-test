@@ -1,11 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { CreateIncidentInput, Incident, IncidentSeverity, IncidentStatus } from '../models/incident.model';
+import { IncidentsApiService } from '../data-access/incidents-api.service';
 
 @Injectable()
 export class IncidentsService {
-  private readonly httpClient = inject(HttpClient);
+  private readonly incidentsApiService = inject(IncidentsApiService);
 
   private readonly incidentsState = signal<readonly Incident[]>([]);
   private readonly loadingState = signal(false);
@@ -23,7 +23,7 @@ export class IncidentsService {
 
     this.loadingState.set(true);
 
-    this.httpClient.get<readonly Incident[]>('assets/mock-data/incidents.json').subscribe({
+    this.incidentsApiService.getIncidents().subscribe({
       next: (incidents) => {
         this.incidentsState.set(incidents);
         this.loadedState.set(true);
