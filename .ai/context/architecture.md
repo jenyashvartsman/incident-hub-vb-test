@@ -1,5 +1,10 @@
 # Architecture Context
 
+Follow:
+
+- .ai\decisions\01-api-strategy.md
+- .ai\decisions\02-signal-store-feature-state.md
+
 Use Angular standalone components.
 
 Structure rules:

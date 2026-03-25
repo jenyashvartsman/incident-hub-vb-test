@@ -4,12 +4,12 @@ import { IncidentDetailPageComponent } from './pages/incident-detail-page/incide
 import { CreateIncidentPageComponent } from './pages/create-incident-page/create-incident-page.component';
 import { IncidentsPageComponent } from './pages/incidents-page/incidents-page.component';
 import { IncidentsApiService } from './data-access/incidents-api.service';
-import { IncidentsService } from './services/incidents.service';
+import { IncidentsStore } from './state/incidents.store';
 
 export const INCIDENTS_ROUTES: Routes = [
   {
     path: 'incidents',
-    providers: [IncidentsApiService, IncidentsService],
+    providers: [IncidentsApiService, IncidentsStore],
     children: [
       {
         path: '',

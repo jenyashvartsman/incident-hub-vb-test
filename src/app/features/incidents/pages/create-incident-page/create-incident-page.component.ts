@@ -9,8 +9,8 @@ import {
   UiSelectOption
 } from '../../../../shared/ui/input-field-select/input-field-select.component';
 import { UiInputFieldTextComponent } from '../../../../shared/ui/input-field-text/input-field-text.component';
-import { CreateIncidentInput, IncidentSeverity } from '../../models/incident.model';
-import { IncidentsService } from '../../services/incidents.service';
+import { IncidentSeverity } from '../../models/incident.model';
+import { IncidentsStore } from '../../state/incidents.store';
 
 @Component({
   selector: 'app-create-incident-page',
@@ -29,7 +29,7 @@ import { IncidentsService } from '../../services/incidents.service';
 export class CreateIncidentPageComponent {
   private readonly formBuilder = inject(FormBuilder);
   private readonly router = inject(Router);
-  private readonly incidentsService = inject(IncidentsService);
+  private readonly incidentsStore = inject(IncidentsStore);
 
   protected readonly severityOptions: readonly UiSelectOption[] = [
     { label: 'Critical', value: 'Critical' },
@@ -49,7 +49,7 @@ export class CreateIncidentPageComponent {
   });
 
   public constructor() {
-    this.incidentsService.load();
+    this.incidentsStore.load();
   }
 
   protected submit(): void {
@@ -61,7 +61,7 @@ export class CreateIncidentPageComponent {
     }
 
     const value = this.form.getRawValue();
-    const incident = this.incidentsService.createIncident({
+    const incident = this.incidentsStore.createIncident({
       title: value.title.trim(),
       summary: value.summary.trim(),
       description: value.description.trim(),

@@ -8,7 +8,7 @@ import { UiBadgeComponent } from '../../../../shared/ui/badge/badge.component';
 import { UiButtonComponent } from '../../../../shared/ui/button/button.component';
 import { UiCardComponent } from '../../../../shared/ui/card/card.component';
 import { IncidentSeverity, IncidentStatus } from '../../models/incident.model';
-import { IncidentsService } from '../../services/incidents.service';
+import { IncidentsStore } from '../../state/incidents.store';
 
 @Component({
   selector: 'app-incident-detail-page',
@@ -20,30 +20,26 @@ import { IncidentsService } from '../../services/incidents.service';
 export class IncidentDetailPageComponent {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
-  private readonly incidentsService = inject(IncidentsService);
+  private readonly incidentsStore = inject(IncidentsStore);
 
-  protected readonly hasLoaded = this.incidentsService.hasLoaded;
-  protected readonly isLoading = this.incidentsService.isLoading;
+  protected readonly hasLoaded = this.incidentsStore.hasLoaded;
+  protected readonly isLoading = this.incidentsStore.isLoading;
   private readonly incidentId = toSignal(
     this.route.paramMap.pipe(map((params) => params.get('incidentId') ?? '')),
     { initialValue: '' }
   );
-
-  protected readonly incident = computed(() => {
-    const incidentId = this.incidentId();
-    return this.incidentsService.incidents().find((entry) => entry.id === incidentId);
-  });
+  protected readonly incident = this.incidentsStore.incidentById(this.incidentId);
 
   public constructor() {
-    this.incidentsService.load();
+    this.incidentsStore.load();
   }
 
   protected severityTone(severity: IncidentSeverity) {
-    return this.incidentsService.severityTone(severity);
+    return this.incidentsStore.severityTone(severity);
   }
 
   protected statusTone(status: IncidentStatus) {
-    return this.incidentsService.statusTone(status);
+    return this.incidentsStore.statusTone(status);
   }
 
   protected goToCreateIncident(): void {

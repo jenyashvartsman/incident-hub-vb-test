@@ -11,7 +11,7 @@ import {
   UiTableRowDirective
 } from '../../../../shared/ui/table/table.component';
 import { IncidentSeverity, IncidentStatus } from '../../models/incident.model';
-import { IncidentsService } from '../../services/incidents.service';
+import { IncidentsStore } from '../../state/incidents.store';
 
 @Component({
   selector: 'app-incidents-page',
@@ -30,14 +30,14 @@ import { IncidentsService } from '../../services/incidents.service';
 })
 export class IncidentsPageComponent {
   private readonly router = inject(Router);
-  private readonly incidentsService = inject(IncidentsService);
+  private readonly incidentsStore = inject(IncidentsStore);
 
-  protected readonly incidents = this.incidentsService.incidents;
-  protected readonly isLoading = this.incidentsService.isLoading;
-  protected readonly totalIncidents = this.incidentsService.totalIncidents;
+  protected readonly incidents = this.incidentsStore.incidents;
+  protected readonly isLoading = this.incidentsStore.isLoading;
+  protected readonly totalIncidents = this.incidentsStore.totalIncidents;
 
   public constructor() {
-    this.incidentsService.load();
+    this.incidentsStore.load();
   }
 
   protected openIncident(incidentId: string): void {
@@ -49,10 +49,10 @@ export class IncidentsPageComponent {
   }
 
   protected severityTone(severity: IncidentSeverity) {
-    return this.incidentsService.severityTone(severity);
+    return this.incidentsStore.severityTone(severity);
   }
 
   protected statusTone(status: IncidentStatus) {
-    return this.incidentsService.statusTone(status);
+    return this.incidentsStore.statusTone(status);
   }
 }
