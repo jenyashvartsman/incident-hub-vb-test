@@ -1,0 +1,150 @@
+.page,
+.detail-grid,
+.page__meta,
+.page__actions,
+.detail-card,
+.detail-card__facts,
+.timeline,
+.notes {
+  display: grid;
+}
+
+.page {
+  gap: 24px;
+}
+
+.page__header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.page__headline,
+.detail-card,
+.timeline,
+.notes {
+  gap: 16px;
+}
+
+.page__eyebrow,
+.page__meta-copy,
+.page__summary,
+.detail-card p,
+.detail-card dt,
+.timeline__entry span,
+.notes__entry span {
+  color: var(--text-muted);
+}
+
+.page__eyebrow {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.page__title,
+.page__summary,
+.detail-card h3,
+.detail-card p,
+.detail-card dt,
+.detail-card dd,
+.timeline__entry p,
+.notes__entry p {
+  margin: 0;
+}
+
+.page__title {
+  font-size: 1.9rem;
+}
+
+.page__summary,
+.detail-card p,
+.timeline__entry p,
+.notes__entry p {
+  line-height: 1.6;
+}
+
+.page__meta {
+  grid-template-columns: repeat(5, max-content);
+  gap: 12px;
+  align-items: center;
+}
+
+.page__actions {
+  grid-auto-flow: row;
+  justify-items: end;
+  gap: 12px;
+}
+
+.page__link {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.page__link:hover {
+  text-decoration: underline;
+}
+
+.detail-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.detail-card__facts {
+  gap: 14px;
+}
+
+.detail-card__facts div {
+  display: grid;
+  gap: 4px;
+}
+
+.detail-card dd {
+  color: var(--text-primary);
+}
+
+.timeline__entry,
+.notes__entry {
+  display: grid;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.timeline__entry:first-child,
+.notes__entry:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.empty-state {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .page__header,
+  .detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page__header {
+    display: grid;
+  }
+
+  .page__meta {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .page__actions {
+    justify-items: start;
+  }
+}
+
+@media (max-width: 640px) {
+  .page__meta {
+    grid-template-columns: 1fr;
+  }
+}

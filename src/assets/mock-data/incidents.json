@@ -1,0 +1,112 @@
+[
+  {
+    "id": "api-latency-spike",
+    "title": "API latency spike",
+    "summary": "Elevated p95 latency on the public API is causing intermittent timeouts for customers in North America.",
+    "description": "Response times increased sharply after the latest deployment window. The team is reviewing recent infra changes, draining a noisy node pool, and validating cache health across the primary region.",
+    "service": "Public API",
+    "owner": "Platform",
+    "channel": "Slack #inc-api",
+    "severity": "High",
+    "status": "Investigating",
+    "createdAt": "2026-03-24T13:20:00.000Z",
+    "updatedAt": "2026-03-24T15:05:00.000Z",
+    "notes": [
+      {
+        "id": "note-1",
+        "author": "Avery Chen",
+        "createdAt": "2026-03-24T14:02:00.000Z",
+        "body": "Rollback is on hold while we compare node-level saturation against yesterday's baseline."
+      },
+      {
+        "id": "note-2",
+        "author": "Jordan Lee",
+        "createdAt": "2026-03-24T14:47:00.000Z",
+        "body": "Customer-facing status page updated with elevated latency advisory."
+      }
+    ],
+    "timeline": [
+      {
+        "id": "timeline-1",
+        "actor": "Pager rotation",
+        "createdAt": "2026-03-24T13:20:00.000Z",
+        "title": "Incident opened",
+        "detail": "Automated alert triggered after sustained latency breached the critical threshold."
+      },
+      {
+        "id": "timeline-2",
+        "actor": "Platform",
+        "createdAt": "2026-03-24T14:10:00.000Z",
+        "title": "Investigation in progress",
+        "detail": "Traffic shifted away from the busiest node group while the team reviews deployment diffs."
+      }
+    ]
+  },
+  {
+    "id": "webhook-retries-delayed",
+    "title": "Webhook retries delayed",
+    "summary": "Outgoing webhook retries are accumulating in the queue, delaying downstream delivery for some integrations.",
+    "description": "The retry worker pool is healthy, but queue depth is growing due to a burst of failed attempts from a partner endpoint. Teams are evaluating temporary rate shaping and replay priorities.",
+    "service": "Integrations",
+    "owner": "Integrations",
+    "channel": "Slack #inc-integrations",
+    "severity": "Medium",
+    "status": "Open",
+    "createdAt": "2026-03-24T11:40:00.000Z",
+    "updatedAt": "2026-03-24T14:25:00.000Z",
+    "notes": [
+      {
+        "id": "note-3",
+        "author": "Priya Raman",
+        "createdAt": "2026-03-24T12:11:00.000Z",
+        "body": "No data loss observed so far; delayed retries remain replayable."
+      }
+    ],
+    "timeline": [
+      {
+        "id": "timeline-3",
+        "actor": "Alertmanager",
+        "createdAt": "2026-03-24T11:40:00.000Z",
+        "title": "Incident opened",
+        "detail": "Queue depth exceeded the warning threshold for ten consecutive minutes."
+      }
+    ]
+  },
+  {
+    "id": "status-page-cache-stale",
+    "title": "Status page stale cache",
+    "summary": "Status page components served stale cache content after a CDN configuration drift.",
+    "description": "Static status widgets were not refreshing because the CDN edge cache max-age was applied incorrectly during a policy rollout. The configuration has been corrected and verified.",
+    "service": "Status Page",
+    "owner": "Infrastructure",
+    "channel": "Slack #inc-status",
+    "severity": "Low",
+    "status": "Stable",
+    "createdAt": "2026-03-23T18:05:00.000Z",
+    "updatedAt": "2026-03-24T09:18:00.000Z",
+    "notes": [
+      {
+        "id": "note-4",
+        "author": "Morgan Diaz",
+        "createdAt": "2026-03-24T09:18:00.000Z",
+        "body": "Cache policy corrected and propagation confirmed across primary regions."
+      }
+    ],
+    "timeline": [
+      {
+        "id": "timeline-4",
+        "actor": "Infrastructure",
+        "createdAt": "2026-03-23T18:05:00.000Z",
+        "title": "Incident opened",
+        "detail": "Customer reports showed a mismatch between internal health and public status page messaging."
+      },
+      {
+        "id": "timeline-5",
+        "actor": "Infrastructure",
+        "createdAt": "2026-03-24T09:18:00.000Z",
+        "title": "System stable",
+        "detail": "Fresh cache entries are now being served and validation checks are passing."
+      }
+    ]
+  }
+]

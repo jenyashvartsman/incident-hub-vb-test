@@ -3,36 +3,36 @@
     <div>
       <p class="page__eyebrow">Incidents</p>
       <h2 class="page__title">Tracked issues</h2>
+      <p class="page__summary">Monitor open work, inspect current status, and drill into the latest incident notes.</p>
     </div>
-    <span class="page__meta">Mock list view</span>
+    <div class="page__actions">
+      <span class="page__meta">{{ isLoading() ? 'Loading incidents...' : totalIncidents() + ' incidents' }}</span>
+      <app-button (click)="goToCreateIncident()">Create incident</app-button>
+    </div>
   </header>
 
-  <app-table columns="minmax(0, 2fr) repeat(3, minmax(0, 1fr))">
+  <app-table columns="minmax(0, 2.3fr) repeat(4, minmax(0, 1fr))">
     <div uiTableHead>
       <span uiTableCell>Incident</span>
+      <span uiTableCell>Service</span>
       <span uiTableCell>Owner</span>
       <span uiTableCell>Severity</span>
       <span uiTableCell>Status</span>
     </div>
 
-    @for (incident of incidents; track incident.title) {
-      <article uiTableRow>
-        <strong uiTableCell label="Incident">{{ incident.title }}</strong>
+    @for (incident of incidents(); track incident.id) {
+      <article class="incident-row" uiTableRow (click)="openIncident(incident.id)">
+        <div uiTableCell label="Incident">
+          <strong class="incident-row__title">{{ incident.title }}</strong>
+          <p class="incident-row__summary">{{ incident.summary }}</p>
+          <span class="incident-row__timestamp">Updated {{ incident.updatedAt | date: 'short' }}</span>
+        </div>
+        <span uiTableCell label="Service">{{ incident.service }}</span>
         <span uiTableCell label="Owner">{{ incident.owner }}</span>
-        <app-badge uiTableCell label="Severity" [tone]="incident.severity === 'High' ? 'danger' : 'warning'">
+        <app-badge uiTableCell label="Severity" [tone]="severityTone(incident.severity)">
           {{ incident.severity }}
         </app-badge>
-        <app-badge
-          uiTableCell
-          label="Status"
-          [tone]="
-            incident.status === 'Open'
-              ? 'warning'
-              : incident.status === 'Investigating'
-                ? 'info'
-                : 'success'
-          "
-        >
+        <app-badge uiTableCell label="Status" [tone]="statusTone(incident.status)">
           {{ incident.status }}
         </app-badge>
       </article>

@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { PageShellComponent } from './core/layout/page-shell/page-shell.component';
 import { DashboardPageComponent } from './features/dashboard/pages/dashboard-page/dashboard-page.component';
-import { IncidentsPageComponent } from './features/incidents/pages/incidents-page/incidents-page.component';
+import { INCIDENTS_ROUTES } from './features/incidents/incidents.routes';
 import { SettingsPageComponent } from './features/settings/pages/settings-page/settings-page.component';
 
 export const routes: Routes = [
@@ -18,10 +18,7 @@ export const routes: Routes = [
         path: 'dashboard',
         component: DashboardPageComponent
       },
-      {
-        path: 'incidents',
-        component: IncidentsPageComponent
-      },
+      ...INCIDENTS_ROUTES,
       {
         path: 'settings',
         component: SettingsPageComponent

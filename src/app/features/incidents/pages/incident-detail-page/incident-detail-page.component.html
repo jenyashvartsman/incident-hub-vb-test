@@ -1,0 +1,106 @@
+<section class="page">
+  @if (incident(); as incident) {
+    <header class="page__header">
+      <div class="page__headline">
+        <p class="page__eyebrow">Incident detail</p>
+        <h2 class="page__title">{{ incident.title }}</h2>
+        <p class="page__summary">{{ incident.summary }}</p>
+      </div>
+
+      <div class="page__actions">
+        <a class="page__link" routerLink="/incidents">Back to incidents</a>
+        <app-button variant="secondary" (click)="goToCreateIncident()">Create related incident</app-button>
+      </div>
+    </header>
+
+    <div class="page__meta">
+      <app-badge [tone]="severityTone(incident.severity)">{{ incident.severity }}</app-badge>
+      <app-badge [tone]="statusTone(incident.status)">{{ incident.status }}</app-badge>
+      <span class="page__meta-copy">Owner: {{ incident.owner }}</span>
+      <span class="page__meta-copy">Service: {{ incident.service }}</span>
+      <span class="page__meta-copy">Updated: {{ incident.updatedAt | date: 'medium' }}</span>
+    </div>
+
+    <div class="detail-grid">
+      <app-card>
+        <section class="detail-card">
+          <h3>Description</h3>
+          <p>{{ incident.description }}</p>
+        </section>
+      </app-card>
+
+      <app-card>
+        <section class="detail-card detail-card--meta">
+          <h3>Routing</h3>
+          <dl class="detail-card__facts">
+            <div>
+              <dt>Channel</dt>
+              <dd>{{ incident.channel }}</dd>
+            </div>
+            <div>
+              <dt>Created</dt>
+              <dd>{{ incident.createdAt | date: 'medium' }}</dd>
+            </div>
+            <div>
+              <dt>Last updated</dt>
+              <dd>{{ incident.updatedAt | date: 'medium' }}</dd>
+            </div>
+          </dl>
+        </section>
+      </app-card>
+    </div>
+
+    <div class="detail-grid">
+      <app-card>
+        <section class="detail-card">
+          <h3>Timeline</h3>
+
+          <div class="timeline">
+            @for (entry of incident.timeline; track entry.id) {
+              <article class="timeline__entry">
+                <div>
+                  <strong>{{ entry.title }}</strong>
+                  <p>{{ entry.detail }}</p>
+                </div>
+                <span>{{ entry.actor }} · {{ entry.createdAt | date: 'short' }}</span>
+              </article>
+            }
+          </div>
+        </section>
+      </app-card>
+
+      <app-card>
+        <section class="detail-card">
+          <h3>Notes</h3>
+
+          <div class="notes">
+            @for (note of incident.notes; track note.id) {
+              <article class="notes__entry">
+                <strong>{{ note.author }}</strong>
+                <span>{{ note.createdAt | date: 'short' }}</span>
+                <p>{{ note.body }}</p>
+              </article>
+            }
+          </div>
+        </section>
+      </app-card>
+    </div>
+  } @else if (isLoading() || !hasLoaded()) {
+    <app-card>
+      <section class="empty-state">
+        <p class="page__eyebrow">Incident detail</p>
+        <h2 class="page__title">Loading incident</h2>
+        <p class="page__summary">Fetching the current incident state from the mock dataset.</p>
+      </section>
+    </app-card>
+  } @else {
+    <app-card>
+      <section class="empty-state">
+        <p class="page__eyebrow">Incident detail</p>
+        <h2 class="page__title">Incident not found</h2>
+        <p class="page__summary">The requested incident could not be loaded from the current mock dataset.</p>
+        <a class="page__link" routerLink="/incidents">Return to incidents</a>
+      </section>
+    </app-card>
+  }
+</section>

@@ -1,0 +1,65 @@
+<section class="page">
+  <header class="page__header">
+    <div>
+      <p class="page__eyebrow">Create incident</p>
+      <h2 class="page__title">Open a new incident</h2>
+      <p class="page__summary">Capture the key routing and incident context for the mock response workflow.</p>
+    </div>
+
+    <a class="page__link" routerLink="/incidents">Back to incidents</a>
+  </header>
+
+  <app-card padding="lg">
+    <form class="form" (ngSubmit)="submit()">
+      <div class="form__grid">
+        <app-input [(ngModel)]="model.title" label="Title" name="title" placeholder="API latency spike" />
+        <app-input [(ngModel)]="model.owner" label="Owner" name="owner" placeholder="Platform" />
+        <app-input [(ngModel)]="model.service" label="Service" name="service" placeholder="Public API" />
+        <app-input
+          [(ngModel)]="model.channel"
+          label="Response channel"
+          name="channel"
+          placeholder="Slack #incident-room"
+        />
+      </div>
+
+      <label class="field">
+        <span class="field__label">Severity</span>
+        <select class="field__control" [(ngModel)]="model.severity" name="severity">
+          @for (severity of severityOptions; track severity) {
+            <option [value]="severity">{{ severity }}</option>
+          }
+        </select>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Summary</span>
+        <textarea
+          class="field__control field__control--textarea"
+          [(ngModel)]="model.summary"
+          name="summary"
+          rows="3"
+        ></textarea>
+      </label>
+
+      <label class="field">
+        <span class="field__label">Description</span>
+        <textarea
+          class="field__control field__control--textarea"
+          [(ngModel)]="model.description"
+          name="description"
+          rows="6"
+        ></textarea>
+      </label>
+
+      @if (showValidation) {
+        <p class="form__validation">Fill in all fields before creating the incident.</p>
+      }
+
+      <div class="form__actions">
+        <a class="page__link" routerLink="/incidents">Cancel</a>
+        <app-button type="submit">Create incident</app-button>
+      </div>
+    </form>
+  </app-card>
+</section>
